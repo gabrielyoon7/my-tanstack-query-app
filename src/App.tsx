@@ -3,6 +3,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query'
+import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient()
 
@@ -10,6 +11,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Example />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )
 }
@@ -25,7 +27,7 @@ function Example() {
 
   if (isLoading) return 'Loading...'
 
-  if (error) return 'An error has occurred: ' + error?.message
+  if (error) return 'An error has occurred: ' + JSON.stringify(error)
 
   return (
     <div>
